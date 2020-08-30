@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     const string lastVertical = "LastVertical";
     const string walkingState = "Walking";
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         walking = false;

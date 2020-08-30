@@ -8,7 +8,6 @@ public class SpawnZone : MonoBehaviour
     public Vector2 facingDirection = Vector2.zero;
     public string placeName;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
