@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3614344467201869779}
   - component: {fileID: 3614344467201869776}
   - component: {fileID: 3614344467201869777}
+  - component: {fileID: 649782283608202087}
+  - component: {fileID: 4708312334281732705}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -158,3 +160,30 @@ MonoBehaviour:
   timeToMakeStep: 1.5
   directionToMakeStep: {x: 0, y: 0}
   lastMovement: {x: 0, y: 0}
+--- !u!114 &649782283608202087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3614344467201869783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06bf866399dacd48bf62d1860a4173e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!114 &4708312334281732705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3614344467201869783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70982e4eea10248acfc29287e01f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHelth: 20
+  currentHelth: 0
