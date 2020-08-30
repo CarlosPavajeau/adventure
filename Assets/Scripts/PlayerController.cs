@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 4.0f;
+    public float speed = 450.0f;
     public Vector2 lastMovement = new Vector2(0f, 0f);
 
     private bool walking = false;
     private Animator animator;
+    private Rigidbody2D playerRg;
 
     const string horizontal = "Horizontal";
     const string vertical = "Vertical";
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerRg = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,18 +30,30 @@ public class PlayerController : MonoBehaviour
         float horizontalRaw = Input.GetAxisRaw(horizontal);
         if (Mathf.Abs(horizontalRaw) > 0.5f)
         {
-            transform.Translate(new Vector3(horizontalRaw * speed * Time.deltaTime, 0, 0));
+            playerRg.velocity = new Vector2(horizontalRaw * speed * Time.deltaTime, playerRg.velocity.y);
             walking = true;
             lastMovement = new Vector2(horizontalRaw, 0);
+        }
+        else
+        {
+            playerRg.velocity = new Vector2(0, playerRg.velocity.y);
         }
 
         float verticalRaw = Input.GetAxisRaw(vertical);
         if (Mathf.Abs(verticalRaw) > 0.5f)
         {
-            transform.Translate(new Vector3(0, verticalRaw * speed * Time.deltaTime, 0));
+            playerRg.velocity = new Vector2(playerRg.velocity.x, verticalRaw * speed * Time.deltaTime);
             walking = true;
             lastMovement = new Vector2(0, verticalRaw);
         }
+        else
+        {
+            playerRg.velocity = new Vector2(playerRg.velocity.x, 0);
+        }
+
+        if (!walking)
+            playerRg.velocity = Vector2.zero;
+
 
         animator.SetFloat(horizontal, horizontalRaw);
         animator.SetFloat(vertical, verticalRaw);
