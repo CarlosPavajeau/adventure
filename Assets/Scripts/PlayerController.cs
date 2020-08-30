@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static bool PlayerCreated;
+
     public float speed = 450.0f;
     public Vector2 lastMovement = new Vector2(0f, 0f);
+    public string nextPlaceName;
 
     private bool walking = false;
     private Animator animator;
@@ -20,6 +23,16 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerRg = GetComponent<Rigidbody2D>();
+
+        if (!PlayerCreated)
+        {
+            PlayerCreated = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
