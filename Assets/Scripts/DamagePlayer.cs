@@ -10,10 +10,15 @@ public class DamagePlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<HealtManager>().TakeDamage(damage);
+            CharacterStats stats = collision.gameObject.GetComponent<CharacterStats>();
+            int totalDamage = damage - stats.defenseLevels[stats.currentLevel];
+            if (totalDamage <= 0)
+                totalDamage = 1;
+
+            collision.gameObject.GetComponent<HealtManager>().TakeDamage(totalDamage);
             GameObject clone = Instantiate(damageNumber, collision.gameObject.transform.position, Quaternion.Euler(Vector3.zero));
             clone.GetComponent<DamageNumber>().color = Color.red;
-            clone.GetComponent<DamageNumber>().damagePoints = damage;
+            clone.GetComponent<DamageNumber>().damagePoints = totalDamage;
         }
     }
 }

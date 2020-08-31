@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 1093862332754184180}
   - component: {fileID: 1093862332754184181}
   - component: {fileID: 1073035374}
+  - component: {fileID: 1073035375}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -403,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e90d7655c954114ba53ebccb7b09bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 190
+  speed: 450
   lastMovement: {x: 0, y: 0}
   nextPlaceName: 
   attackTime: 0.1
@@ -462,3 +463,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHelth: 200
   currentHelth: 0
+  flashActive: 0
+  flashLength: 1
+  expWhenDefeated: 0
+--- !u!114 &1073035375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093862332754184171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4e0eae783a37242b0bda3294ab82ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 0
+  currentExp: 0
+  expToLevelUp: 000000000a000000140000003200000064000000c8000000f4010000e8030000d007000088130000
+  hpLevels: 
+  stringhtLevels: 
+  defenseLevels: 
