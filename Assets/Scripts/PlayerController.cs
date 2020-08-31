@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     public string nextPlaceName;
 
     private bool walking = false;
+    public bool talking;
+
     private Animator animator;
     private Rigidbody2D playerRg;
+    private DialogManager manager;
 
     const string horizontal = "Horizontal";
     const string vertical = "Vertical";
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerRg = GetComponent<Rigidbody2D>();
+        manager = FindObjectOfType<DialogManager>();
 
         if (!PlayerCreated)
         {
@@ -43,6 +47,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        talking = manager.dialogActive;
+        if (talking)
+        {
+            playerRg.velocity = Vector2.zero;
+            return;
+        }
+
         walking = false;
 
         if (Input.GetMouseButtonDown(0))
