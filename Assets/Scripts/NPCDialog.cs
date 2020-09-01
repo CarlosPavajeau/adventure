@@ -15,9 +15,14 @@ public class NPCDialog : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
             playerInTheZone = true;
-        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            playerInTheZone = false;
     }
 
     // Update is called once per frame

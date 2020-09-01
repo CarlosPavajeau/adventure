@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        lastMovement = new Vector2(1, 0);
     }
 
     void Update()
@@ -57,12 +59,7 @@ public class PlayerController : MonoBehaviour
         walking = false;
 
         if (Input.GetMouseButtonDown(0))
-        {
-            attaking = true;
-            attackTimeCounter = attackTime;
-            playerRg.velocity = Vector2.zero;
-            animator.SetBool(attakingState, true);
-        }
+            Attack();
 
         if (attaking)
         {
@@ -78,12 +75,7 @@ public class PlayerController : MonoBehaviour
             float horizontalRaw = Input.GetAxisRaw(horizontal);
             float verticalRaw = Input.GetAxisRaw(vertical);
             if (Mathf.Abs(horizontalRaw) >= 0.5f || Mathf.Abs(verticalRaw) >= 0.5f)
-            {
-                walking = true;
-                lastMovement = new Vector2(horizontalRaw, verticalRaw);
-                playerRg.velocity = lastMovement.normalized * speed * Time.deltaTime;
-                lastMovement = new Vector2(horizontalRaw, verticalRaw);
-            }
+                Move(new Vector2(horizontalRaw, verticalRaw));
 
             animator.SetFloat(horizontal, horizontalRaw);
             animator.SetFloat(vertical, verticalRaw);
@@ -96,5 +88,20 @@ public class PlayerController : MonoBehaviour
 
         if (!walking)
             playerRg.velocity = Vector2.zero;
+    }
+
+    private void Attack()
+    {
+        attaking = true;
+        attackTimeCounter = attackTime;
+        playerRg.velocity = Vector2.zero;
+        animator.SetBool(attakingState, true);
+    }
+
+    private void Move(Vector2 axis)
+    {
+        walking = true;
+        lastMovement = axis;
+        playerRg.velocity = lastMovement.normalized * speed * Time.deltaTime;
     }
 }

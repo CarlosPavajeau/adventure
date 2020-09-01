@@ -11,12 +11,16 @@ public class HealtManager : MonoBehaviour
 
     public int expWhenDefeated;
 
+    public string enemyName;
+    private QuestManager manager;
+
     private SpriteRenderer characterRendered;
     // Start is called before the first frame update
     void Start()
     {
         currentHelth = maxHelth;
         characterRendered = GetComponent<SpriteRenderer>();
+        manager = FindObjectOfType<QuestManager>();
     }
 
     // Update is called once per frame
@@ -25,7 +29,10 @@ public class HealtManager : MonoBehaviour
         if (currentHelth <= 0)
         {
             if (gameObject.CompareTag("Enemy"))
+            {
+                manager.enemyKilled = enemyName;
                 GameObject.Find("Player").GetComponent<CharacterStats>().AddExperience(expWhenDefeated);
+            }
 
             gameObject.SetActive(false);
         }
