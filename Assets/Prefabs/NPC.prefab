@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8874704060490356339}
   - component: {fileID: 8874704060490356337}
   - component: {fileID: 8874704060490356338}
+  - component: {fileID: 8613539239109926775}
   m_Layer: 0
   m_Name: DialogZone
   m_TagString: Untagged
@@ -75,9 +76,23 @@ MonoBehaviour:
   - "Hace un buen d\xEDa."
   - "\xBFHas visto mi casa?, te invito."
   playerInTheZone: 0
+--- !u!114 &8613539239109926775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874704060490356340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba5150776bfee34db0972247e3ebe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   infoText: {fileID: 4207820574762597715, guid: 1bdc5a087583f0b41818e8a028467cb4,
     type: 3}
   textInfo: Press E
+  showText: 0
+  yDiff: 0.7
 --- !u!1 &8874704060588026360
 GameObject:
   m_ObjectHideFlags: 0

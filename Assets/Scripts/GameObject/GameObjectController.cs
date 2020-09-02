@@ -7,6 +7,7 @@ public class GameObjectController : MonoBehaviour
     public int questID;
 
     private QuestManager questManager;
+    private InfoText infoText;
 
     private bool playerCanInteract;
 
@@ -14,12 +15,17 @@ public class GameObjectController : MonoBehaviour
     void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
+        infoText = GetComponent<InfoText>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
             playerCanInteract = true;
+            if (infoText != null)
+                infoText.showText = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -32,6 +38,12 @@ public class GameObjectController : MonoBehaviour
                 questManager.quests[questID].StartQuest();
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (infoText != null)
+            infoText.showText = false;
     }
 
 }

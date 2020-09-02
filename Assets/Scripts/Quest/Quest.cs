@@ -45,7 +45,7 @@ public class Quest : MonoBehaviour
             manager = FindObjectOfType<QuestManager>();
 
         if (needsOtherQuest)
-            if (!IsComplete)
+            if (!manager.quests[requireQuest].IsComplete)
                 return;
 
         playerStats = GameObject.Find("Player").GetComponent<CharacterStats>();
