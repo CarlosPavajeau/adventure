@@ -20,9 +20,9 @@ public class WeaponDamage : MonoBehaviour
         {
             int totalDamage = damage;
             if (characterStats != null)
-                totalDamage += characterStats.strenghtLevels[characterStats.currentLevel];
-
+                totalDamage += characterStats.GetCurrentStrenght();
             collision.gameObject.GetComponent<HealtManager>().TakeDamage(totalDamage);
+
             Instantiate(hurtAnimation, hitPoint.transform.position, hitPoint.transform.rotation);
             GameObject clone = Instantiate(damageNumber, hitPoint.transform.position, Quaternion.Euler(Vector3.zero));
             clone.GetComponent<DamageNumber>().damagePoints = totalDamage;

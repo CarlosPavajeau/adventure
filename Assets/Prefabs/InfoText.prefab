@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 4207820574762597718}
   - component: {fileID: 4207820574762597717}
   - component: {fileID: 4207820574762597716}
-  - component: {fileID: 5431479138294879952}
-  - component: {fileID: 360508436}
   m_Layer: 5
-  m_Name: DamageNumber
+  m_Name: InfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 14.249524, y: 2.6903753}
+  m_AnchoredPosition: {x: 14.249512, y: 2.6903687}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4207820574762597718
@@ -101,35 +99,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5431479138294879952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4207820574762597715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0fe3ec28c3c58418b112bcb5aababa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageSpeed: 0.01
-  damagePoints: 10
-  damageText: {fileID: 4207820575276934346}
-  color: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &360508436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4207820574762597715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c22856729a54c4f90b039183317eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
 --- !u!1 &4207820575276934344
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +128,7 @@ RectTransform:
   m_GameObject: {fileID: 4207820575276934344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 4207820574762597719}
   m_RootOrder: 0
@@ -201,7 +170,7 @@ MonoBehaviour:
     m_FontSize: 1
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -209,7 +178,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999
+  m_Text: Text
 --- !u!114 &4207820575276934349
 MonoBehaviour:
   m_ObjectHideFlags: 0

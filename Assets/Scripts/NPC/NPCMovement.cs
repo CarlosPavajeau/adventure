@@ -5,7 +5,7 @@ public class NPCMovement : MonoBehaviour
     public float speed = 1.5f;
     private Rigidbody2D npcRigidbody;
 
-    public bool walking, talking;
+    public bool isWalking, isTalking;
 
     public float walkTime = 1.5f;
     private float walkCounter;
@@ -14,7 +14,7 @@ public class NPCMovement : MonoBehaviour
     private float waitCounter;
     private DialogManager manager;
 
-    private Vector2[] walkingDirections =
+    private readonly Vector2[] walkingDirections =
     {
         new Vector2(1, 0),
         new Vector2(0, 1),
@@ -40,18 +40,15 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!manager.dialogActive)
-        {
-            talking = false;
-        }
+        isTalking = manager.dialogActive;
 
-        if (talking)
+        if (isTalking)
         {
             StopWalking();
             return;
         }
 
-        if (walking)
+        if (isWalking)
         {
             if (villagerZone != null)
             {
@@ -79,14 +76,14 @@ public class NPCMovement : MonoBehaviour
 
     private void StartWalking()
     {
-        walking = true;
+        isWalking = true;
         currentDirection = Random.Range(0, 4);
         walkCounter = walkTime;
     }
 
     private void StopWalking()
     {
-        walking = false;
+        isWalking = false;
         waitCounter = waitTime;
         npcRigidbody.velocity = Vector2.zero;
     }

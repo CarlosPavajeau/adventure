@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    const string horizontal = "Horizontal";
+    const string vertical = "Vertical";
+    const string lastHorizontal = "LastHorizontal";
+    const string lastVertical = "LastVertical";
+    const string walkingState = "Walking";
+    const string attakingState = "Attaking";
+
     public static bool PlayerCreated;
 
     public float speed = 190.0f;
@@ -17,13 +24,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRg;
     private DialogManager manager;
     private SoundManager soundManager;
-
-    const string horizontal = "Horizontal";
-    const string vertical = "Vertical";
-    const string lastHorizontal = "LastHorizontal";
-    const string lastVertical = "LastVertical";
-    const string walkingState = "Walking";
-    const string attakingState = "Attaking";
 
     private bool attaking;
     public float attackTime;

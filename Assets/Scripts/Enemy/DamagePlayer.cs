@@ -11,7 +11,7 @@ public class DamagePlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             CharacterStats stats = collision.gameObject.GetComponent<CharacterStats>();
-            int totalDamage = damage - stats.defenseLevels[stats.currentLevel];
+            int totalDamage = damage - stats.GetCurrentDefense();
             if (totalDamage <= 0)
                 totalDamage = 1;
 

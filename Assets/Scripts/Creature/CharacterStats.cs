@@ -35,4 +35,14 @@ public class CharacterStats : MonoBehaviour
     {
         currentExp += exp;
     }
+
+    public int GetCurrentDefense()
+    {
+        return defenseLevels[currentLevel];
+    }
+
+    public int GetCurrentStrenght()
+    {
+        return strenghtLevels[currentLevel];
+    }
 }

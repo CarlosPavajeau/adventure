@@ -74,6 +74,10 @@ MonoBehaviour:
   - Hola, soy Manolo.
   - "Hace un buen d\xEDa."
   - "\xBFHas visto mi casa?, te invito."
+  playerInTheZone: 0
+  infoText: {fileID: 4207820574762597715, guid: 1bdc5a087583f0b41818e8a028467cb4,
+    type: 3}
+  textInfo: Press E
 --- !u!1 &8874704060588026360
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  walking: 0
-  talking: 0
+  isWalking: 0
+  isTalking: 0
   walkTime: 1.5
   waitTime: 2
   villagerZone: {fileID: 0}

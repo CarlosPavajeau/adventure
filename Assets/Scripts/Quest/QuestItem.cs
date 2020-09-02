@@ -17,7 +17,7 @@ public class QuestItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             if (manager.quests[questID].gameObject.activeInHierarchy &&
-                !manager.questCompleted[questID])
+                !manager.QuestComplete(questID))
             {
                 manager.itemCollected = itemName;
                 gameObject.SetActive(false);

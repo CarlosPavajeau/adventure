@@ -16,17 +16,16 @@ public class Quest : MonoBehaviour
     public int numberOfEnemies;
     private int enemiesKilled;
 
+    public bool needsOtherQuest;
+    public int requireQuest;
+
     private CharacterStats playerStats;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    public bool IsComplete { get; private set; }
 
-    // Update is called once per frame
     void Update()
     {
-        if (needsItem && manager.itemCollected.Equals(itemNeeded))
+        if (needsItem && manager.itemCollected == itemNeeded)
         {
             manager.itemCollected = null;
             CompleteQuest();
@@ -42,7 +41,13 @@ public class Quest : MonoBehaviour
 
     public void StartQuest()
     {
-        manager = FindObjectOfType<QuestManager>();
+        if (manager is null)
+            manager = FindObjectOfType<QuestManager>();
+
+        if (needsOtherQuest)
+            if (!IsComplete)
+                return;
+
         playerStats = GameObject.Find("Player").GetComponent<CharacterStats>();
         manager.ShowQuestText(startText);
     }
@@ -53,7 +58,7 @@ public class Quest : MonoBehaviour
             playerStats.AddExperience(experienceOnComplete);
 
         manager.ShowQuestText(completeText);
-        manager.questCompleted[questID] = true;
+        IsComplete = true;
         gameObject.SetActive(false);
     }
 }

@@ -17,7 +17,7 @@ public class QuestTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (!manager.questCompleted[questID])
+            if (!manager.QuestComplete(questID))
             {
                 if (startPoint && !manager.quests[questID].gameObject.activeInHierarchy)
                 {
