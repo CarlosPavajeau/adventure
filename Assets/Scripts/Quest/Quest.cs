@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    public int questID;
-    private QuestManager manager;
+    public int Id;
 
     public string startText, completeText;
     public int experienceOnComplete;
 
     public bool needsItem;
     public string itemNeeded;
+    public int numberOfItems = 1;
+    private int itemsCollected;
 
     public bool needsEnemy;
     public string enemyName;
@@ -20,6 +21,7 @@ public class Quest : MonoBehaviour
     public int requireQuest;
 
     private CharacterStats playerStats;
+    private QuestManager manager;
 
     public bool IsComplete { get; private set; }
 
@@ -28,7 +30,9 @@ public class Quest : MonoBehaviour
         if (needsItem && manager.itemCollected == itemNeeded)
         {
             manager.itemCollected = null;
-            CompleteQuest();
+            ++itemsCollected;
+            if (itemsCollected >= numberOfItems)
+                CompleteQuest();
         }
         else if (needsEnemy && manager.enemyKilled == enemyName)
         {
