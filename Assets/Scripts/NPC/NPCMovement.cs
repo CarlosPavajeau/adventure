@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour
 {
+    const string horizontal = "Horizontal";
+    const string vertical = "Vertical";
+    const string lastHorizontal = "LastHorizontal";
+    const string lastVertical = "LastVertical";
+    const string walkingState = "Walking";
+
     public float speed = 1.5f;
     private Rigidbody2D npcRigidbody;
+    private Animator npcAnimator;
 
     public bool isWalking, isTalking;
 
@@ -30,6 +37,7 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
         npcRigidbody = GetComponent<Rigidbody2D>();
+        npcAnimator = GetComponent<Animator>();
 
         walkCounter = walkTime + Random.Range(0.5f, 2f);
         waitCounter = waitTime + Random.Range(0f, 3f);
@@ -61,6 +69,7 @@ public class NPCMovement : MonoBehaviour
             }
 
             npcRigidbody.velocity = walkingDirections[currentDirection] * speed;
+
             walkCounter -= Time.deltaTime;
             if (walkCounter <= 0)
                 StopWalking();
@@ -79,6 +88,10 @@ public class NPCMovement : MonoBehaviour
         isWalking = true;
         currentDirection = Random.Range(0, 4);
         walkCounter = walkTime;
+
+        npcAnimator.SetFloat(horizontal, walkingDirections[currentDirection].x);
+        npcAnimator.SetFloat(vertical, walkingDirections[currentDirection].y);
+        npcAnimator.SetBool(walkingState, isWalking);
     }
 
     private void StopWalking()
@@ -86,5 +99,10 @@ public class NPCMovement : MonoBehaviour
         isWalking = false;
         waitCounter = waitTime;
         npcRigidbody.velocity = Vector2.zero;
+
+        npcAnimator.SetFloat(lastHorizontal, walkingDirections[currentDirection].x);
+        npcAnimator.SetFloat(lastVertical, walkingDirections[currentDirection].y);
+
+        npcAnimator.SetBool(walkingState, isWalking);
     }
 }

@@ -7,6 +7,20 @@ public class GoToNewPlace : MonoBehaviour
 
     public string goToPlaceName;
 
+    InfoText infoText;
+
+    private void Start()
+    {
+        infoText = GetComponent<InfoText>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            if (infoText != null)
+                infoText.showText = true;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -17,5 +31,12 @@ public class GoToNewPlace : MonoBehaviour
                 SceneManager.LoadScene(newPlaceName);
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            if (infoText != null)
+                infoText.showText = false;
     }
 }

@@ -407,6 +407,7 @@ MonoBehaviour:
   speed: 450
   lastMovement: {x: 0, y: 0}
   nextPlaceName: 
+  talking: 0
   attackTime: 0.1
   attackTimeCounter: 0
 --- !u!95 &1093862332754184180
@@ -466,6 +467,7 @@ MonoBehaviour:
   flashActive: 0
   flashLength: 1
   expWhenDefeated: 0
+  enemyName: 
 --- !u!114 &1073035375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,5 +484,5 @@ MonoBehaviour:
   currentExp: 0
   expToLevelUp: 000000000a000000140000003200000064000000c8000000f4010000e8030000d007000088130000
   hpLevels: 
-  stringhtLevels: 
+  strenghtLevels: 
   defenseLevels: 
