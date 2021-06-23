@@ -1,24 +1,31 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Audio
 {
-    public AudioSource[] audioTracks;
-    public int currentTrack;
-    public bool audioCanBePlay;
-
-    void Update()
+    public class AudioManager : MonoBehaviour
     {
-        if (audioCanBePlay)
+        public AudioSource[] audioTracks;
+        public int currentTrack;
+        public bool audioCanBePlay;
+
+        void Update()
         {
-            if (!audioTracks[currentTrack].isPlaying)
-                audioTracks[currentTrack].Play();
-        }
-    }
+            if (!audioCanBePlay)
+            {
+                return;
+            }
 
-    public void PlayeNewTrack(int newTrack)
-    {
-        audioTracks[currentTrack].Stop();
-        currentTrack = newTrack;
-        audioTracks[currentTrack].Play();
+            if (!audioTracks[currentTrack].isPlaying)
+            {
+                audioTracks[currentTrack].Play();
+            }
+        }
+
+        public void PlayeNewTrack(int newTrack)
+        {
+            audioTracks[currentTrack].Stop();
+            currentTrack = newTrack;
+            audioTracks[currentTrack].Play();
+        }
     }
 }

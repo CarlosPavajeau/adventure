@@ -1,37 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogManager : MonoBehaviour
+namespace UI
 {
-    public GameObject dialogBox;
-    public Text dialogText;
-    public bool dialogActive;
-
-    public string[] dialogLines;
-    public int currentDialogLine;
-
-    void Update()
+    public class DialogManager : MonoBehaviour
     {
-        if (dialogActive && Input.GetKeyDown(KeyCode.Space))
-            ++currentDialogLine;
+        public GameObject dialogBox;
+        public Text dialogText;
+        public bool dialogActive;
 
-        if (currentDialogLine >= dialogLines.Length)
+        public string[] dialogLines;
+        public int currentDialogLine;
+
+        void Update()
         {
-            dialogActive = false;
-            dialogBox.SetActive(false);
-            currentDialogLine = 0;
+            if (dialogActive && Input.GetKeyDown(KeyCode.Space))
+                ++currentDialogLine;
+
+            if (currentDialogLine >= dialogLines.Length)
+            {
+                dialogActive = false;
+                dialogBox.SetActive(false);
+                currentDialogLine = 0;
+            }
+            else
+            {
+                dialogText.text = dialogLines[currentDialogLine];
+            }
+
         }
-        else
+
+        public void ShowDialog(string[] dialogs)
         {
-            dialogText.text = dialogLines[currentDialogLine];
+            dialogActive = true;
+            dialogBox.SetActive(true);
+            dialogLines = dialogs;
         }
-
-    }
-
-    public void ShowDialog(string[] dialogs)
-    {
-        dialogActive = true;
-        dialogBox.SetActive(true);
-        dialogLines = dialogs;
     }
 }

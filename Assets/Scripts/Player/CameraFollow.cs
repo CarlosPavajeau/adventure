@@ -1,45 +1,48 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Player
 {
-    [SerializeField]
-    private GameObject followTarget;
-    [SerializeField]
-    private Vector3 targetPosition;
-    [SerializeField]
-    private float cameraSpeed = 4.0f;
-
-    private Camera mainCamera;
-    private BoxCollider2D cameraLimits;
-
-    private Vector3 minLimits, maxLimits;
-
-    private float halfWidth, halfHeight;
-    private void Start()
+    public class CameraFollow : MonoBehaviour
     {
-        cameraLimits = GameObject.Find("CameraLimits").GetComponent<BoxCollider2D>();
-        ChangeLimits(cameraLimits);
-    }
+        [SerializeField]
+        private GameObject followTarget;
+        [SerializeField]
+        private Vector3 targetPosition;
+        [SerializeField]
+        private float cameraSpeed = 4.0f;
 
-    void Update()
-    {
-        targetPosition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * cameraSpeed);
+        private Camera mainCamera;
+        private BoxCollider2D cameraLimits;
 
-        float clampX = Mathf.Clamp(transform.position.x, minLimits.x + halfWidth, maxLimits.x - halfWidth);
-        float clampY = Mathf.Clamp(transform.position.y, minLimits.y + halfHeight, maxLimits.y - halfHeight);
+        private Vector3 minLimits, maxLimits;
 
-        transform.position = new Vector3(clampX, clampY, transform.position.z);
-    }
+        private float halfWidth, halfHeight;
+        private void Start()
+        {
+            cameraLimits = GameObject.Find("CameraLimits").GetComponent<BoxCollider2D>();
+            ChangeLimits(cameraLimits);
+        }
 
-    public void ChangeLimits(BoxCollider2D cameraLimits)
-    {
-        minLimits = cameraLimits.bounds.min;
-        maxLimits = cameraLimits.bounds.max;
+        void Update()
+        {
+            targetPosition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * cameraSpeed);
 
-        mainCamera = GetComponent<Camera>();
+            float clampX = Mathf.Clamp(transform.position.x, minLimits.x + halfWidth, maxLimits.x - halfWidth);
+            float clampY = Mathf.Clamp(transform.position.y, minLimits.y + halfHeight, maxLimits.y - halfHeight);
 
-        halfWidth = mainCamera.orthographicSize;
-        halfHeight = halfWidth / Screen.width * Screen.height;
+            transform.position = new Vector3(clampX, clampY, transform.position.z);
+        }
+
+        public void ChangeLimits(BoxCollider2D cameraLimits)
+        {
+            minLimits = cameraLimits.bounds.min;
+            maxLimits = cameraLimits.bounds.max;
+
+            mainCamera = GetComponent<Camera>();
+
+            halfWidth = mainCamera.orthographicSize;
+            halfHeight = halfWidth / Screen.width * Screen.height;
+        }
     }
 }

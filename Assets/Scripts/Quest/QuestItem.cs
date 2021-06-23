@@ -1,26 +1,29 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class QuestItem : MonoBehaviour
+namespace Quest
 {
-    public int questID;
-    private QuestManager manager;
-    public string itemName;
-
-    void Start()
+    [RequireComponent(typeof(Collider2D))]
+    public class QuestItem : MonoBehaviour
     {
-        manager = FindObjectOfType<QuestManager>();
-    }
+        public int questID;
+        private QuestManager manager;
+        public string itemName;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        void Start()
         {
-            if (manager.quests[questID].gameObject.activeInHierarchy &&
-                !manager.QuestComplete(questID))
+            manager = FindObjectOfType<QuestManager>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
             {
-                manager.itemCollected = itemName;
-                gameObject.SetActive(false);
+                if (manager.quests[questID].gameObject.activeInHierarchy &&
+                    !manager.QuestComplete(questID))
+                {
+                    manager.itemCollected = itemName;
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

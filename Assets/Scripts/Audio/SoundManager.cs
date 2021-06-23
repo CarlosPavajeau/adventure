@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+namespace Audio
 {
-    public AudioSource playerHurt, playerDead, playerAttack;
+    public class SoundManager : MonoBehaviour
+    {
+        public AudioSource playerHurt, playerDead, playerAttack;
+    }
 }

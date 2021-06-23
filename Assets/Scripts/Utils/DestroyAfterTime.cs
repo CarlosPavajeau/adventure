@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class DestroyAfterTime : MonoBehaviour
+namespace Utils
 {
-    public float timeToDestroy;
-
-    void Update()
+    public class DestroyAfterTime : MonoBehaviour
     {
-        timeToDestroy -= Time.deltaTime;
-        if (timeToDestroy <= 0)
-            Destroy(gameObject);
+        public float timeToDestroy;
 
+        void Update()
+        {
+            timeToDestroy -= Time.deltaTime;
+            if (timeToDestroy <= 0)
+                Destroy(gameObject);
+
+        }
     }
 }

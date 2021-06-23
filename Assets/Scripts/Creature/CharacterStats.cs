@@ -1,48 +1,53 @@
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+namespace Creature
 {
-    public int currentLevel;
-    public int currentExp;
-    public int[] expToLevelUp;
-
-    public int[] hpLevels, strenghtLevels, defenseLevels;
-
-    private HealtManager healtManager;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CharacterStats : MonoBehaviour
     {
-        healtManager = GetComponent<HealtManager>();
-    }
+        public int currentLevel;
+        public int currentExp;
+        public int[] expToLevelUp;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (currentLevel >= expToLevelUp.Length)
-            return;
+        public int[] hpLevels;
+        public int[] strengthLevels;
+        public int[] defenseLevels;
 
-        if (currentExp >= expToLevelUp[currentLevel])
+        private HealtManager healthManager;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            currentExp = 0;
-            ++currentLevel;
-
-            healtManager.UpdateMaxHealth(hpLevels[currentLevel]);
+            healthManager = GetComponent<HealtManager>();
         }
-    }
 
-    public void AddExperience(int exp)
-    {
-        currentExp += exp;
-    }
+        // Update is called once per frame
+        private void Update()
+        {
+            if (currentLevel >= expToLevelUp.Length)
+                return;
 
-    public int GetCurrentDefense()
-    {
-        return defenseLevels[currentLevel];
-    }
+            if (currentExp >= expToLevelUp[currentLevel])
+            {
+                currentExp = 0;
+                ++currentLevel;
 
-    public int GetCurrentStrenght()
-    {
-        return strenghtLevels[currentLevel];
+                healthManager.UpdateMaxHealth(hpLevels[currentLevel]);
+            }
+        }
+
+        public void AddExperience(int exp)
+        {
+            currentExp += exp;
+        }
+
+        public int GetCurrentDefense()
+        {
+            return defenseLevels[currentLevel];
+        }
+
+        public int GetCurrentStrenght()
+        {
+            return strengthLevels[currentLevel];
+        }
     }
 }

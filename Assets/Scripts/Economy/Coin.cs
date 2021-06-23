@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+namespace Economy
 {
-    public int value;
-    private CoinsManager manager;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Coin : MonoBehaviour
     {
-        manager = FindObjectOfType<CoinsManager>();
-    }
+        public int value;
+        private CoinsManager manager;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        // Start is called before the first frame update
+        void Start()
         {
-            manager.AddMoney(value);
-            Destroy(gameObject);
+            manager = FindObjectOfType<CoinsManager>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                manager.AddMoney(value);
+                Destroy(gameObject);
+            }
         }
     }
 }

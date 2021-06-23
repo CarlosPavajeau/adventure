@@ -1,29 +1,27 @@
 using UnityEngine;
 
-public class AudioVolumeManager : MonoBehaviour
+namespace Audio
 {
-    private AudioVolumeController[] audios;
-    public float maxVolumeLevel;
-    public float currentVolumeLevel;
-
-    // Start is called before the first frame update
-    void Start()
+    public class AudioVolumeManager : MonoBehaviour
     {
-        audios = FindObjectsOfType<AudioVolumeController>();
-        ChangeGlobalAudioVolume();
-    }
+        private AudioVolumeController[] audios;
+        public float maxVolumeLevel;
+        public float currentVolumeLevel;
 
-    private void Update()
-    {
-        ChangeGlobalAudioVolume();
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            audios = FindObjectsOfType<AudioVolumeController>();
+            ChangeGlobalAudioVolume();
+        }
 
-    public void ChangeGlobalAudioVolume()
-    {
-        if (currentVolumeLevel >= maxVolumeLevel)
-            currentVolumeLevel = maxVolumeLevel;
+        public void ChangeGlobalAudioVolume()
+        {
+            if (currentVolumeLevel >= maxVolumeLevel)
+                currentVolumeLevel = maxVolumeLevel;
 
-        foreach (AudioVolumeController audioVolume in audios)
-            audioVolume.SetAudioLevel(currentVolumeLevel);
+            foreach (AudioVolumeController audioVolume in audios)
+                audioVolume.SetAudioLevel(currentVolumeLevel);
+        }
     }
 }

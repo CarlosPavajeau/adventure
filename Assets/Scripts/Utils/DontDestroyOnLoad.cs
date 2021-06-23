@@ -1,16 +1,20 @@
+using Player;
 using UnityEngine;
 
-public class DontDestroyOnLoad : MonoBehaviour
+namespace Utils
 {
-    void Start()
+    public class DontDestroyOnLoad : MonoBehaviour
     {
-        if (!PlayerController.PlayerCreated)
+        void Start()
         {
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            if (!PlayerController.playerCreated)
+            {
+                DontDestroyOnLoad(transform.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -1,27 +1,31 @@
+using UI;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+namespace Quest
 {
-    public Quest[] quests;
-
-    private DialogManager manager;
-
-    public string itemCollected;
-    public string enemyKilled;
-
-    void Start()
+    public class QuestManager : MonoBehaviour
     {
-        manager = FindObjectOfType<DialogManager>();
-    }
+        public global::Quest.Quest[] quests;
 
-    public bool QuestComplete(int questId)
-    {
-        return quests[questId].IsComplete;
-    }
+        private DialogManager manager;
 
-    public void ShowQuestText(string questText)
-    {
-        string[] questLines = new string[] { questText };
-        manager.ShowDialog(questLines);
+        public string itemCollected;
+        public string enemyKilled;
+
+        void Start()
+        {
+            manager = FindObjectOfType<DialogManager>();
+        }
+
+        public bool QuestComplete(int questId)
+        {
+            return quests[questId].IsComplete;
+        }
+
+        public void ShowQuestText(string questText)
+        {
+            string[] questLines = new string[] { questText };
+            manager.ShowDialog(questLines);
+        }
     }
 }

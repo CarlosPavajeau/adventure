@@ -1,9 +1,12 @@
+using Audio;
+using Creature;
+using Quest;
 using UnityEngine;
 
 public class HealtManager : MonoBehaviour
 {
-    public int maxHelth;
-    public int currentHelth;
+    public int maxHealth;
+    public int currentHealth;
 
     public bool flashActive;
     public float flashLength;
@@ -18,7 +21,7 @@ public class HealtManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHelth = maxHelth;
+        currentHealth = maxHealth;
         characterRendered = GetComponent<SpriteRenderer>();
         manager = FindObjectOfType<QuestManager>();
     }
@@ -26,7 +29,7 @@ public class HealtManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHelth <= 0)
+        if (currentHealth <= 0)
         {
             if (gameObject.CompareTag("Enemy"))
             {
@@ -59,7 +62,7 @@ public class HealtManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHelth -= damage;
+        currentHealth -= damage;
         if (flashLength > 0)
         {
             flashActive = true;
@@ -74,8 +77,8 @@ public class HealtManager : MonoBehaviour
 
     public void UpdateMaxHealth(int newMaxHealth)
     {
-        maxHelth = newMaxHealth;
-        currentHelth = newMaxHealth;
+        maxHealth = newMaxHealth;
+        currentHealth = newMaxHealth;
     }
 
 }

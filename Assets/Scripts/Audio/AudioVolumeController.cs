@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class AudioVolumeController : MonoBehaviour
+namespace Audio
 {
-    private AudioSource audioSource;
-    private float currentAudioLevel;
-    public float defaultAudioLevel;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class AudioVolumeController : MonoBehaviour
     {
-        audioSource = GetComponent<AudioSource>();
-    }
+        private AudioSource audioSource;
+        private float currentAudioLevel;
+        public float defaultAudioLevel;
 
-    public void SetAudioLevel(float newVolume)
-    {
-        if (audioSource == null)
+
+        // Start is called before the first frame update
+        void Start()
+        {
             audioSource = GetComponent<AudioSource>();
+        }
 
-        currentAudioLevel = defaultAudioLevel * newVolume;
-        audioSource.volume = currentAudioLevel;
+        public void SetAudioLevel(float newVolume)
+        {
+            if (audioSource == null)
+                audioSource = GetComponent<AudioSource>();
+
+            currentAudioLevel = defaultAudioLevel * newVolume;
+            audioSource.volume = currentAudioLevel;
+        }
     }
 }

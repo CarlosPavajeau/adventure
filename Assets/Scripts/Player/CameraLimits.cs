@@ -1,11 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class CameraLimits : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(BoxCollider2D))]
+    public class CameraLimits : MonoBehaviour
     {
-        FindObjectOfType<CameraFollow>().ChangeLimits(GetComponent<BoxCollider2D>());
+        // Start is called before the first frame update
+        void Start()
+        {
+            FindObjectOfType<CameraFollow>().ChangeLimits(GetComponent<BoxCollider2D>());
+        }
     }
 }

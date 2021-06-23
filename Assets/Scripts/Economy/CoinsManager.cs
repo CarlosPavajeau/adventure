@@ -1,33 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoinsManager : MonoBehaviour
+namespace Economy
 {
-    public Text moneyText;
-    public int currentGold;
-
-    const string goldKey = "CurrentGold";
-
-    // Start is called before the first frame update
-    void Start()
+    public class CoinsManager : MonoBehaviour
     {
-        if (PlayerPrefs.HasKey(goldKey))
+        public Text moneyText;
+        public int currentGold;
+
+        private const string GoldKey = "CurrentGold";
+
+        // Start is called before the first frame update
+        void Start()
         {
-            currentGold = PlayerPrefs.GetInt(goldKey);
-        }
-        else
-        {
-            currentGold = 0;
-            PlayerPrefs.SetInt(goldKey, 0);
+            if (PlayerPrefs.HasKey(GoldKey))
+            {
+                currentGold = PlayerPrefs.GetInt(GoldKey);
+            }
+            else
+            {
+                currentGold = 0;
+                PlayerPrefs.SetInt(GoldKey, 0);
+            }
+
+            moneyText.text = currentGold.ToString();
         }
 
-        moneyText.text = currentGold.ToString();
-    }
-
-    public void AddMoney(int moneyCollected)
-    {
-        currentGold += moneyCollected;
-        PlayerPrefs.SetInt(goldKey, currentGold);
-        moneyText.text = currentGold.ToString();
+        public void AddMoney(int moneyCollected)
+        {
+            currentGold += moneyCollected;
+            PlayerPrefs.SetInt(GoldKey, currentGold);
+            moneyText.text = currentGold.ToString();
+        }
     }
 }

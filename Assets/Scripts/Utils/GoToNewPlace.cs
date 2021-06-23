@@ -1,42 +1,47 @@
+using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GoToNewPlace : MonoBehaviour
+namespace Utils
 {
-    public string newPlaceName = "New place here";
-
-    public string goToPlaceName;
-
-    InfoText infoText;
-
-    private void Start()
+    public class GoToNewPlace : MonoBehaviour
     {
-        infoText = GetComponent<InfoText>();
-    }
+        public string newPlaceName = "New place here";
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            if (infoText != null)
-                infoText.showText = true;
-    }
+        public string goToPlaceName;
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        InfoText infoText;
+
+        private void Start()
         {
-            if (Input.GetKey(KeyCode.E))
+            infoText = GetComponent<InfoText>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+                if (infoText != null)
+                    infoText.showText = true;
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
             {
-                FindObjectOfType<PlayerController>().nextPlaceName = goToPlaceName;
-                SceneManager.LoadScene(newPlaceName);
+                if (Input.GetKey(KeyCode.E))
+                {
+                    FindObjectOfType<PlayerController>().nextPlaceName = goToPlaceName;
+                    SceneManager.LoadScene(newPlaceName);
+                }
             }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            if (infoText != null)
-                infoText.showText = false;
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+                if (infoText != null)
+                    infoText.showText = false;
+        }
     }
 }

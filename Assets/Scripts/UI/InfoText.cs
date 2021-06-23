@@ -1,34 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InfoText : MonoBehaviour
+namespace UI
 {
-    public GameObject infoText;
-    public string textInfo;
-
-    public bool showText;
-
-    public float yDiff = 0.7f;
-
-    private void Start()
+    public class InfoText : MonoBehaviour
     {
-        infoText = Instantiate(infoText, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
-        infoText.GetComponentInChildren<Text>().text = textInfo;
-        infoText.SetActive(false);
-    }
+        public GameObject infoText;
+        public string textInfo;
 
-    private void Update()
-    {
-        if (showText)
+        public bool showText;
+
+        public float yDiff = 0.7f;
+
+        private void Start()
         {
-            if (!infoText.activeInHierarchy)
-                infoText.SetActive(true);
-            infoText.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + yDiff, infoText.transform.position.z);
+            infoText = Instantiate(infoText, gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+            infoText.GetComponentInChildren<Text>().text = textInfo;
+            infoText.SetActive(false);
         }
-        else
+
+        private void Update()
         {
-            if (infoText.activeInHierarchy)
-                infoText.SetActive(false);
+            if (showText)
+            {
+                if (!infoText.activeInHierarchy)
+                    infoText.SetActive(true);
+                infoText.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + yDiff, infoText.transform.position.z);
+            }
+            else
+            {
+                if (infoText.activeInHierarchy)
+                    infoText.SetActive(false);
+            }
         }
     }
 }

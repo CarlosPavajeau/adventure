@@ -1,18 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DamageNumber : MonoBehaviour
+namespace UI
 {
-    public float damageSpeed;
-    public float damagePoints;
-
-    public Text damageText;
-    public Color color = Color.white;
-
-    void Update()
+    public class DamageNumber : MonoBehaviour
     {
-        damageText.color = color;
-        damageText.text = $"-{damagePoints}";
-        transform.position = new Vector3(transform.position.x, transform.position.y + damageSpeed, transform.position.z);
+        public float damageSpeed;
+        public float damagePoints;
+
+        public Text damageText;
+        public Color color = Color.white;
+
+        void Update()
+        {
+            damageText.color = color;
+            damageText.text = $"-{damagePoints}";
+            transform.position = new Vector3(transform.position.x, transform.position.y + damageSpeed, transform.position.z);
+        }
     }
 }
